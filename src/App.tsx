@@ -2,6 +2,7 @@ import { Grid, GridItem } from "@chakra-ui/react";
 import { useState } from "react";
 import { NavBar } from "./components/NavBar";
 import { WhiskyList } from "./components/WhiskyList";
+import whiskies from "./data/whiskies";
 
 function App() {
   return (

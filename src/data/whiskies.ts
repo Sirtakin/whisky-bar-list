@@ -1,5 +1,6 @@
 export default [
   {
+    id: 1,
     destillery: "Arran",
     edition: "10 year",
     country: "Scotland",
@@ -10,6 +11,7 @@ export default [
     price: 140,
   },
   {
+    id: 2,
     destillery: "Glenlivet",
     edition: "Nadurra",
     country: "Scotland",
@@ -20,6 +22,7 @@ export default [
     price: 200,
   },
   {
+    id: 3,
     destillery: "Laphroaig",
     edition: "Lore",
     country: "Scotland",
@@ -30,6 +33,7 @@ export default [
     price: 300,
   },
   {
+    id: 4,
     destillery: "Ardbeg",
     edition: "Uigedail",
     country: "Scotland",
@@ -40,6 +44,7 @@ export default [
     price: 260,
   },
   {
+    id: 5,
     destillery: "Balvenie",
     edition: "Carrabian Cask",
     country: "Scotland",
@@ -50,6 +55,7 @@ export default [
     price: 220,
   },
   {
+    id: 6,
     destillery: "Laphroaig",
     edition: "10 years old",
     country: "Scotland",
@@ -60,6 +66,7 @@ export default [
     price: 150,
   },
   {
+    id: 7,
     destillery: "Kavalan",
     edition: "Solist Single Malt",
     country: "Taiwan",
@@ -70,6 +77,7 @@ export default [
     price: 350,
   },
   {
+    id: 8,
     destillery: "Kavalan",
     edition: "Solist Single Malt",
     country: "Taiwan",
@@ -80,6 +88,7 @@ export default [
     price: 380,
   },
   {
+    id: 9,
     destillery: "Hibiki",
     edition: "Harmony",
     country: "Japan",

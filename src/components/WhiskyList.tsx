@@ -1,119 +1,65 @@
 import {
-  Box,
+  ListItem,
   Table,
-  TableCaption,
   TableContainer,
   Tbody,
   Td,
-  Tfoot,
   Th,
   Thead,
   Tr,
-  Text,
 } from "@chakra-ui/react";
 import { FilterButton } from "./FilterButton";
+import useWhiskies from "../hooks/useWhisky";
 
 interface Props {
   onSearch: (searchText: string) => void;
 }
 
-export const WhiskyList = ({ onSearch }: Props) => (
-  <TableContainer>
-    <Table variant="striped" colorScheme={"blackAlpha"} maxWidth="100%">
-      <Thead>
-        <Tr>
-          <Th>
-            <FilterButton
-              onSearch={onSearch}
-              category="Destillery"
-              placeholder="Destillery"
-            />
-          </Th>
-          <Th>
-            <FilterButton
-              onSearch={onSearch}
-              category="Name"
-              placeholder="Name"
-            />
-          </Th>
-          <Th>
-            <FilterButton
-              onSearch={onSearch}
-              category="Age"
-              placeholder="Age"
-            />
-          </Th>
-          <Th>
-            <FilterButton
-              onSearch={onSearch}
-              category="Country"
-              placeholder="Country"
-            />
-          </Th>
-          <Th>
-            <FilterButton
-              onSearch={onSearch}
-              category="Barrel"
-              placeholder="Barrel"
-            />
-          </Th>
-          <Th>
-            <FilterButton
-              onSearch={onSearch}
-              category="Smoke"
-              placeholder="smoke"
-            />
-          </Th>
-          <Th>
-            <FilterButton
-              onSearch={onSearch}
-              category="Price"
-              placeholder="Price"
-            />
-          </Th>
-        </Tr>
-      </Thead>
+export const WhiskyList = ({ onSearch }: Props) => {
+  const { data } = useWhiskies();
+  const categories = [
+    "Destillery",
+    "Edition",
+    "Country",
+    "Area",
+    "Age",
+    "Barrel",
+    "Smoke",
+    "Price",
+  ];
 
-      <Tbody>
-        <Tr>
-          <Th>Laphroaig</Th>
-          <Th>Lore</Th>
-          <Th>NAS</Th>
-          <Th>Scotland</Th>
-          <Th>Bourbon</Th>
-          <Th>Heavy</Th>
-          <Th>120kr</Th>
-        </Tr>
-        <Tr>
-          <Th>Kavalan</Th>
-          <Th>Soloist</Th>
-          <Th>NAS</Th>
-          <Th>Taiwan</Th>
-          <Th>Sherry</Th>
-          <Th>Light</Th>
-          <Th>200kr</Th>
-        </Tr>
-        <Tr>
-          <Th>Glenmorangie</Th>
-          <Th>Signet</Th>
-          <Th>NAS</Th>
-          <Th>Scotland</Th>
-          <Th>Bourbon</Th>
-          <Th>None</Th>
-          <Th>190kr</Th>
-        </Tr>
-      </Tbody>
-      <Tfoot>
-        <Tr>
-          <Th>Dalmore</Th>
-          <Th>Single Malt</Th>
-          <Th>15</Th>
-          <Th>Scotland</Th>
-          <Th>Sherry</Th>
-          <Th>Light</Th>
-          <Th>150kr</Th>
-        </Tr>
-      </Tfoot>
-    </Table>
-  </TableContainer>
-);
+  return (
+    <TableContainer>
+      <Table variant="simple" colorScheme={"blackAplpha"} maxWidth="100%">
+        <Thead>
+          <Tr>
+            {categories.map((category) => (
+              <Th key={category.indexOf(category)}>
+                <FilterButton
+                  onSearch={onSearch}
+                  category={category}
+                  placeholder={category}
+                />
+              </Th>
+            ))}
+          </Tr>
+        </Thead>
+
+        {data.map((whisky) => (
+          <Tbody key={whisky.id}>
+            <Tr>
+              <Td>{whisky.destillery}</Td>
+              <Td>{whisky.edition}</Td>
+              <Td>{whisky.country}</Td>
+              <Td>{whisky.area}</Td>
+              <Td>{whisky.age}</Td>
+              <Td>{whisky.barrel}</Td>
+              <Td>{whisky.smoke}</Td>
+              <Td>{whisky.price}</Td>
+            </Tr>
+          </Tbody>
+        ))}
+      </Table>
+    </TableContainer>
+  );
+};

@@ -1,6 +1,7 @@
 import whiskies from "../data/whiskies";
 
 export interface Whisky {
+  id: number;
   destillery: string;
   edition: string;
   country: string;
