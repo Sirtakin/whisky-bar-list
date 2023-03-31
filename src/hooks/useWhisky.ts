@@ -1,4 +1,4 @@
-import whiskies from "../data/whiskies";
+import whiskyData from "../data/whiskyData";
 
 export interface Whisky {
   id: number;
@@ -12,6 +12,6 @@ export interface Whisky {
   price: number;
 }
 
-const useWhiskies = () => ({ data: whiskies });
+const useWhiskies = () => ({ data: whiskyData });
 
 export default useWhiskies;

@@ -1,6 +1,6 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
-import { useRef } from "react";
 import { BsChevronDown } from "react-icons/bs";
+import useWhiskies, { Whisky } from "../hooks/useWhisky";
 import { SearchCheckBox } from "./SearchCheckBox";
 import { SearchInput } from "./SearchInput";
 
@@ -12,6 +12,7 @@ interface Props {
 
 export const FilterButton = ({ onSearch, category, placeholder }: Props) => {
   const placeholderText = "Search " + placeholder;
+  const { data } = useWhiskies();
 
   return (
     <Menu>

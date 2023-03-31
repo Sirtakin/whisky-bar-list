@@ -1,17 +1,20 @@
 import { Stack, Checkbox, CheckboxGroup } from "@chakra-ui/react";
-import { Whisky } from "../hooks/useWhisky";
+import { useState } from "react";
+import useWhiskies from "../hooks/useWhisky";
 
-interface Props {}
+export const SearchCheckBox = () => {
+  const { data } = useWhiskies();
+  const [checkedItems, setCheckedItems] = useState([false, false]);
 
-export const SearchCheckBox = ({}: Props) => {
-  //const [category, setCategory] = useState(whisky)
   return (
-    <CheckboxGroup colorScheme="blue">
-      <Stack spacing={2} direction="column">
-        <Checkbox value="naruto">{}</Checkbox>
-        <Checkbox value="sasuke">Sasuke</Checkbox>
-        <Checkbox value="kakashi">Kakashi</Checkbox>
-      </Stack>
+    <CheckboxGroup colorScheme="blue" onChange={(event) => console.log(event)}>
+      {data.map((menuItem) => (
+        <Stack spacing={2} direction="column">
+          <Checkbox key={menuItem.id} value={menuItem.id} defaultChecked>
+            {menuItem.destillery}
+          </Checkbox>
+        </Stack>
+      ))}
     </CheckboxGroup>
   );
 };

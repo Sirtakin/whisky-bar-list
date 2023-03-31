@@ -1,5 +1,4 @@
 import {
-  ListItem,
   Table,
   TableContainer,
   Tbody,
@@ -10,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { FilterButton } from "./FilterButton";
 import useWhiskies from "../hooks/useWhisky";
+import categories from "../data/categories";
 
 interface Props {
   onSearch: (searchText: string) => void;
@@ -17,24 +17,14 @@ interface Props {
 
 export const WhiskyList = ({ onSearch }: Props) => {
   const { data } = useWhiskies();
-  const categories = [
-    "Destillery",
-    "Edition",
-    "Country",
-    "Area",
-    "Age",
-    "Barrel",
-    "Smoke",
-    "Price",
-  ];
 
   return (
-    <TableContainer>
+    <TableContainer whiteSpace="pre-wrap">
       <Table variant="simple" colorScheme={"blackAplpha"} maxWidth="100%">
         <Thead>
           <Tr>
-            {categories.map((category) => (
-              <Th key={category.indexOf(category)}>
+            {categories.map((category, index) => (
+              <Th key={index}>
                 <FilterButton
                   onSearch={onSearch}
                   category={category}
