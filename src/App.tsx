@@ -18,8 +18,8 @@ function App() {
       <GridItem pl="2" area={"header"}>
         <NavBar onSearch={(searchText) => console.log(searchText)} />
       </GridItem>
-      <GridItem pl="2" bg={"yellow.200"} area={"main"} width="100%">
-        <WhiskyList />
+      <GridItem pl="2" area={"main"}>
+        <WhiskyList onSearch={(searchText) => console.log(searchText)} />
       </GridItem>
       <GridItem pl="2" area={"footer"}>
         Footer

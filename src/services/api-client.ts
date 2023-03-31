@@ -1,6 +1,6 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "https://api.rawg.io/api",
-  params: { key: "1a6bc22bb9f64a0a898c9a2767d2ea60" },
+  baseURL: "https://apis.vinmonopolet.no/products/v0",
+  params: { key: "54607ca0515346c5bc215ddb810448a4" },
 });

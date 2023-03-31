@@ -1,4 +1,5 @@
 import {
+  Box,
   Table,
   TableCaption,
   TableContainer,
@@ -8,22 +9,71 @@ import {
   Th,
   Thead,
   Tr,
+  Text,
 } from "@chakra-ui/react";
+import { FilterButton } from "./FilterButton";
 
-export const WhiskyList = () => (
+interface Props {
+  onSearch: (searchText: string) => void;
+}
+
+export const WhiskyList = ({ onSearch }: Props) => (
   <TableContainer>
-    <Table variant="striped" colorScheme="teal">
-      <Thead fontSize="lg">
+    <Table variant="striped" colorScheme={"blackAlpha"} maxWidth="100%">
+      <Thead>
         <Tr>
-          <Th>Destillery</Th>
-          <Th>Name</Th>
-          <Th>Age</Th>
-          <Th>Country</Th>
-          <Th>Barrel</Th>
-          <Th>Smoke</Th>
-          <Th>Price</Th>
+          <Th>
+            <FilterButton
+              onSearch={onSearch}
+              category="Destillery"
+              placeholder="Destillery"
+            />
+          </Th>
+          <Th>
+            <FilterButton
+              onSearch={onSearch}
+              category="Name"
+              placeholder="Name"
+            />
+          </Th>
+          <Th>
+            <FilterButton
+              onSearch={onSearch}
+              category="Age"
+              placeholder="Age"
+            />
+          </Th>
+          <Th>
+            <FilterButton
+              onSearch={onSearch}
+              category="Country"
+              placeholder="Country"
+            />
+          </Th>
+          <Th>
+            <FilterButton
+              onSearch={onSearch}
+              category="Barrel"
+              placeholder="Barrel"
+            />
+          </Th>
+          <Th>
+            <FilterButton
+              onSearch={onSearch}
+              category="Smoke"
+              placeholder="smoke"
+            />
+          </Th>
+          <Th>
+            <FilterButton
+              onSearch={onSearch}
+              category="Price"
+              placeholder="Price"
+            />
+          </Th>
         </Tr>
       </Thead>
+
       <Tbody>
         <Tr>
           <Th>Laphroaig</Th>
