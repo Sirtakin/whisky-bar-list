@@ -2,7 +2,7 @@ import { Grid, GridItem } from "@chakra-ui/react";
 import { useState } from "react";
 import { NavBar } from "./components/NavBar";
 import { WhiskyList } from "./components/WhiskyList";
-import { Whisky } from "./hooks/useWhisky";
+import useWhiskies, { Whisky } from "./hooks/useWhisky";
 
 export interface WhiskyMap {
   whisky: Whisky;
@@ -11,6 +11,7 @@ export interface WhiskyMap {
 
 function App() {
   const [whiskyMap, setWhiskyMap] = useState<WhiskyMap>({} as WhiskyMap);
+  const { data } = useWhiskies();
 
   return (
     <Grid
@@ -31,6 +32,7 @@ function App() {
       <GridItem pl="2" area={"main"}>
         <WhiskyList
           onSearch={(searchText) => setWhiskyMap({ ...whiskyMap, searchText })}
+          whiskyData={data}
         />
       </GridItem>
       <GridItem pl="2" area={"footer"}>

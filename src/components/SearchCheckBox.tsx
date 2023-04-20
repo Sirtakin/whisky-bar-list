@@ -1,42 +1,97 @@
 import { Stack, Checkbox, CheckboxGroup } from "@chakra-ui/react";
 import { Whisky } from "../hooks/useWhisky";
+import { SortPrice } from "./SortPrice";
 
 interface Props {
-  category: string;
-  dropdowItem: Whisky;
+  categories: string;
+  dropdowItem: Whisky[];
 }
 
-export const SearchCheckBox = ({ category, dropdowItem }: Props) => {
-  let destill = new Set<string>([dropdowItem.destillery]);
-  //console.log(destill);
+export const SearchCheckBox = ({ categories, dropdowItem }: Props) => {
+  let destillery = [
+    ...new Set<string>(
+      dropdowItem
+        .map((whisky) => whisky.destillery)
+        .sort()
+        .filter((str) => str !== "")
+    ),
+  ];
+  let edition = [
+    ...new Set<string>(
+      dropdowItem
+        .map((whisky) => whisky.edition)
+        .sort()
+        .filter((str) => str !== "")
+    ),
+  ];
+  let country = [
+    ...new Set<string>(
+      dropdowItem
+        .map((whisky) => whisky.country)
+        .sort()
+        .filter((str) => str !== "")
+    ),
+  ];
+  let area = [
+    ...new Set<string>(
+      dropdowItem
+        .map((whisky) => whisky.area)
+        .sort()
+        .filter((str) => str !== "")
+    ),
+  ];
+  let age = [
+    ...new Set<string>(
+      dropdowItem
+        .map((whisky) => whisky.age)
+        .sort()
+        .filter((str) => str !== "")
+    ),
+  ];
+  let barrel = [
+    ...new Set<string>(
+      dropdowItem
+        .map((whisky) => whisky.barrel)
+        .sort()
+        .filter((str) => str !== "")
+    ),
+  ];
+  let smoke = [
+    ...new Set<string>(
+      dropdowItem
+        .map((whisky) => whisky.smoke)
+        .sort()
+        .filter((str) => str !== "")
+    ),
+  ];
+  let price = [
+    ...new Set<number>(dropdowItem.map((whisky) => whisky.price).sort()),
+  ];
+
+  function mapThisCategory(mapData: string[], selectedCategory: string) {
+    if (categories === selectedCategory) {
+      return mapData.map((element: string, index: number) => (
+        <Checkbox
+          size="md"
+          key={index}
+          onChange={(event) => console.log(event)}
+        >
+          {element}
+        </Checkbox>
+      ));
+    }
+  }
 
   return (
-    <CheckboxGroup colorScheme="blue" onChange={(event) => console.log(event)}>
-      <Stack spacing={2} direction="column">
-        {category === "Destillery" && (
-          <Checkbox defaultChecked>{destill}</Checkbox>
-        )}
-        {category === "Edition" && (
-          <Checkbox defaultChecked>{dropdowItem.edition}</Checkbox>
-        )}
-        {category === "Country" && (
-          <Checkbox defaultChecked>{dropdowItem.country}</Checkbox>
-        )}
-        {category === "Area" && (
-          <Checkbox defaultChecked>{dropdowItem.area}</Checkbox>
-        )}
-        {category === "Age" && (
-          <Checkbox defaultChecked>{dropdowItem.age}</Checkbox>
-        )}
-        {category === "Barrel" && (
-          <Checkbox defaultChecked>{dropdowItem.barrel}</Checkbox>
-        )}
-        {category === "Smoke" && (
-          <Checkbox defaultChecked>{dropdowItem.smoke}</Checkbox>
-        )}
-        {category === "Price" && (
-          <Checkbox defaultChecked>{dropdowItem.price}</Checkbox>
-        )}
+    <CheckboxGroup colorScheme="blue">
+      <Stack m={2} spacing={2} direction="column">
+        {mapThisCategory(destillery, "Destillery")}
+        {mapThisCategory(edition, "Edition")}
+        {mapThisCategory(country, "Country")}
+        {mapThisCategory(area, "Area")}
+        {mapThisCategory(age, "Age")}
+        {mapThisCategory(barrel, "Barrel")}
+        {mapThisCategory(smoke, "Smoke")}
       </Stack>
     </CheckboxGroup>
   );
