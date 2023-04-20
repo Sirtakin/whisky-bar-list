@@ -2,7 +2,7 @@ import { Grid, GridItem } from "@chakra-ui/react";
 import { useState } from "react";
 import { NavBar } from "./components/NavBar";
 import { WhiskyList } from "./components/WhiskyList";
-import useWhiskies, { Whisky } from "./hooks/useWhisky";
+import { Whisky } from "./hooks/useWhisky";
 
 export interface WhiskyMap {
   whisky: Whisky;

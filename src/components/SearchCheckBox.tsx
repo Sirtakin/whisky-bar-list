@@ -1,20 +1,43 @@
 import { Stack, Checkbox, CheckboxGroup } from "@chakra-ui/react";
-import { useState } from "react";
-import useWhiskies from "../hooks/useWhisky";
+import { Whisky } from "../hooks/useWhisky";
 
-export const SearchCheckBox = () => {
-  const { data } = useWhiskies();
-  const [checkedItems, setCheckedItems] = useState([false, false]);
+interface Props {
+  category: string;
+  dropdowItem: Whisky;
+}
+
+export const SearchCheckBox = ({ category, dropdowItem }: Props) => {
+  let destill = new Set<string>([dropdowItem.destillery]);
+  //console.log(destill);
 
   return (
     <CheckboxGroup colorScheme="blue" onChange={(event) => console.log(event)}>
-      {data.map((menuItem) => (
-        <Stack spacing={2} direction="column">
-          <Checkbox key={menuItem.id} value={menuItem.id} defaultChecked>
-            {menuItem.destillery}
-          </Checkbox>
-        </Stack>
-      ))}
+      <Stack spacing={2} direction="column">
+        {category === "Destillery" && (
+          <Checkbox defaultChecked>{destill}</Checkbox>
+        )}
+        {category === "Edition" && (
+          <Checkbox defaultChecked>{dropdowItem.edition}</Checkbox>
+        )}
+        {category === "Country" && (
+          <Checkbox defaultChecked>{dropdowItem.country}</Checkbox>
+        )}
+        {category === "Area" && (
+          <Checkbox defaultChecked>{dropdowItem.area}</Checkbox>
+        )}
+        {category === "Age" && (
+          <Checkbox defaultChecked>{dropdowItem.age}</Checkbox>
+        )}
+        {category === "Barrel" && (
+          <Checkbox defaultChecked>{dropdowItem.barrel}</Checkbox>
+        )}
+        {category === "Smoke" && (
+          <Checkbox defaultChecked>{dropdowItem.smoke}</Checkbox>
+        )}
+        {category === "Price" && (
+          <Checkbox defaultChecked>{dropdowItem.price}</Checkbox>
+        )}
+      </Stack>
     </CheckboxGroup>
   );
 };
