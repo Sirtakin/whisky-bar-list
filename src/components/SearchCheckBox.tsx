@@ -64,9 +64,6 @@ export const SearchCheckBox = ({ categories, dropdowItem }: Props) => {
         .filter((str) => str !== "")
     ),
   ];
-  let price = [
-    ...new Set<number>(dropdowItem.map((whisky) => whisky.price).sort()),
-  ];
 
   function mapThisCategory(mapData: string[], selectedCategory: string) {
     if (categories === selectedCategory) {

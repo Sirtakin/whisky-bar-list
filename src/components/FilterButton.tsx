@@ -29,7 +29,7 @@ export const FilterButton = ({ onSearch, category, whiskyData }: Props) => {
 
       {category === "Price" && (
         <MenuList padding="5px">
-          <SortPrice />
+          <SortPrice priceRange={whiskyData} />
         </MenuList>
       )}
     </Menu>
