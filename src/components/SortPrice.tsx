@@ -24,31 +24,37 @@ export const SortPrice = ({ priceRange }: Props) => {
     ...new Set<number>(priceRange.map((whisky) => whisky.price).sort()),
   ];
 
-  let minPrice = price[0];
-  let maxPrice = price[price.length - 1];
+  const minPrice = price[0];
+  const maxPrice = price[price.length - 1];
 
   const [selectedPrice, setSelectedPrice] = useState([minPrice, maxPrice]);
 
   const handleChange = (selectedPrice: number[]) =>
     setSelectedPrice(selectedPrice);
 
-  const handleMinInput = (value: number) => {
-    setSelectedPrice(selectedPrice.map((v, i) => (i === 0 ? value : v)));
+  const handleMinInput = (value: string) => {
+    setSelectedPrice(
+      selectedPrice.map((v, i) => (i === 0 ? parseInt(value) : v))
+    );
   };
 
-  console.log(selectedPrice);
+  const handleMaxInput = (value: string) => {
+    setSelectedPrice(
+      selectedPrice.map((v, i) => (i === 1 ? parseInt(value) : v))
+    );
+  };
 
   return (
     <>
       <Flex mb={3}>
         <Box>
-          <Text>{selectedPrice[0]}</Text>
           <NumberInput
             maxW="100px"
             mr="2rem"
-            inputMode="decimal"
-            min={selectedPrice[0]}
             defaultValue={selectedPrice[0]}
+            min={minPrice}
+            max={selectedPrice[1]}
+            keepWithinRange={false}
             value={selectedPrice[0]}
             onChange={handleMinInput}
           >
@@ -57,7 +63,18 @@ export const SortPrice = ({ priceRange }: Props) => {
         </Box>
         <Spacer />
         <Box>
-          <Text>{selectedPrice[1]}</Text>
+          <NumberInput
+            maxW="100px"
+            mr="2rem"
+            defaultValue={maxPrice}
+            min={selectedPrice[0]}
+            max={maxPrice}
+            keepWithinRange={false}
+            value={selectedPrice[1]}
+            onChange={handleMaxInput}
+          >
+            <NumberInputField />
+          </NumberInput>
         </Box>
       </Flex>
       <Box m={2}>
