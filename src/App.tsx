@@ -3,6 +3,7 @@ import { useState } from "react";
 import { NavBar } from "./components/NavBar";
 import { WhiskyList } from "./components/WhiskyList";
 import useWhiskies, { Whisky } from "./hooks/useWhisky";
+import { FirestoreData } from "./FirestoreData";
 
 export interface WhiskyMap {
   whisky: Whisky;
